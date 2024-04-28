@@ -15,7 +15,7 @@ abstract class AppRouter {
         builder: (context, state) => LoginScreen()),
       GoRoute(
         path: otpRoute,
-        builder: (context, state) => otpScreen(phoneNumber: null,)),
+        builder: (context, state) => otpScreen(phoneNumber:22,)),
       GoRoute(
         path: homeRoute,
         builder: (context, state) => homeScreen())

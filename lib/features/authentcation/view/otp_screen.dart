@@ -12,12 +12,12 @@ import 'package:pin_code_fields/pin_code_fields.dart';
 
 class otpScreen extends StatelessWidget {
   final phoneNumber;
-  late String otpCode;
   otpScreen({
     super.key,
     required this.phoneNumber,
   });
 
+  late String otpCode;
   FirebaseAuth auth = FirebaseAuth.instance;
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
@@ -67,9 +67,18 @@ class otpScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const header(
-                      text: 'Please Enter Your Code',
-                    ),
+                   RichText(
+            text: TextSpan(
+              text: 'Enter your 6 digit code numbers sent to ',
+              style: TextStyle(color: Colors.black, fontSize: 18, height: 1.4),
+              children: <TextSpan>[
+                TextSpan(
+                  text: '$phoneNumber',
+                  style: TextStyle(color: Colors.blue),
+                ),
+                 ],
+            ),
+                   ),
                     const Gap(10),
                     PinCodeTextField(
                       appContext: context,
@@ -115,21 +124,11 @@ class otpScreen extends StatelessWidget {
                       onCompleted: (code) {
                         otpCode = code;
                       },
-                      // onTap: () {
-                      //   print("Pressed");
-                      // },
+
                       onChanged: (value) {
                         print(value);
-                        // setState(() {
-                        //   currentText = value;
-                        // });
                       },
-                      beforeTextPaste: (text) {
-                        debugPrint("Allowing to paste $text");
-                        //if you return true then it will show the paste confirmation dialog. Otherwise if false, then nothing will happen.
-                        //but you can show anything you want here, like your pop up saying wrong paste format or etc
-                        return true;
-                      },
+                   
                     ),
                     const Gap(100),
                     customButton(

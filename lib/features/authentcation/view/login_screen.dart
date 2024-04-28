@@ -74,6 +74,7 @@ class LoginScreen extends StatelessWidget {
                     const header(text: 'Please Enter Your Phone Number'),
                     const Gap(10),
                     TextFormField(
+                      
                       validator: (v) {
                         if (v!.isEmpty) {
                           return "Please enter your phone number";
